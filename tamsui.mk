@@ -22,7 +22,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.usb.host.xml:system/etc/permissions/android.hardware.usb.host.xml \
     frameworks/native/data/etc/android.hardware.wifi.direct.xml:system/etc/permissions/android.hardware.wifi.direct.xml \
     frameworks/native/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
-    frameworks/native/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
     packages/wallpapers/LivePicker/android.software.live_wallpaper.xml:system/etc/permissions/android.software.live_wallpaper.xml
 
@@ -32,7 +31,12 @@ PRODUCT_COPY_FILES += \
 
 # Common Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
+    device/sony/tamsui-common/config/init.bcm4330.bt.sh:system/etc/init.bcm4330.bt.sh \
+    device/sony/tamsui-common/config/init.qcom.composition_type.sh:system/etc/init.qcom.composition_type.sh \
+    device/sony/tamsui-common/config/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
+    device/sony/tamsui-common/config/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
+    device/sony/tamsui-common/config/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
+    device/sony/tamsui-common/config/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
 
 # QCOM Display
 PRODUCT_PACKAGES += \
@@ -61,11 +65,11 @@ PRODUCT_PACKAGES += \
     audio.a2dp.default \
     audio_policy.msm7x27 \
     audio.primary.msm7x27 \
+    audio_policy.conf \
     libaudioutils
 
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/media_codecs.xml:system/etc/media_codecs.xml \
-    device/sony/tamsui-common/config/audio_policy.conf:system/etc/audio_policy.conf
+    device/sony/tamsui-common/config/media_codecs.xml:system/etc/media_codecs.xml
 
 # Omx
 PRODUCT_PACKAGES += \
@@ -109,8 +113,8 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Custom init / uevent
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/init.semc.rc:root/init.semc.rc \
-    device/sony/tamsui-common/config/ueventd.semc.rc:root/ueventd.semc.rc
+    device/sony/tamsui-common/config/init.sony.rc:root/init.sony.rc \
+    device/sony/tamsui-common/config/ueventd.sony.rc:root/ueventd.sony.rc
 
 # Recovery bootstrap script
 PRODUCT_COPY_FILES += \

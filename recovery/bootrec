@@ -1,4 +1,5 @@
 #!/sbin/sh
+
 setprop service.adb.root 1
 if [ -e /sbin/bootrec-device ]
 then
@@ -9,21 +10,18 @@ if [ -s /dev/keycheck -o -e /cache/recovery/boot ]
 then
   rm /cache/recovery/boot
 
-  echo 0 > /sys/class/android_usb/android0/enable
-  echo 0fce > /sys/class/android_usb/android0/idVendor
-  echo 6146 > /sys/class/android_usb/android0/idProduct
-  echo mass_storage,adb > /sys/class/android_usb/android0/functions
-  echo 1 > /sys/class/android_usb/android0/enable
-  stop adbd
+  stop tad
+  stop ta_qmi_service
+  stop rmt_storage
 
-  sleep 2
   mount -o remount,rw rootfs /
   umount -l /system
   umount -l /data
   umount -l /cache
-  umount -l /mnt/sdcard
+  umount -l /storage/sdcard0
+  rm -r /storage/sdcard0
+  rm -r /mnt/sdcard
   rm -r /sdcard
-  rm -r /not/sdcard
   mkdir /sdcard
   mkdir /tmp
   rm /etc
@@ -32,4 +30,5 @@ then
   mount /dev/block/mmcblk0p15 /sdcard
   /sbin/recovery&
 fi
+
 #continue booting
