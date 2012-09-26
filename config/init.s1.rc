@@ -25,7 +25,8 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-on emmc-fs-s1
+on emmc-fs
+#-s1
     class_start trimarea
     exec /sbin/wait4tad
     # modem remote fs
@@ -40,7 +41,7 @@ on emmc-fs-s1
     # set the startup flag to AMSS start-up 
     start setssflagbs
 	
-on emmc-fs2-s1
+#on emmc-fs2-s1
     wait /dev/block/mmcblk0p15
     exec /system/bin/e2fsck -y -f /dev/block/mmcblk0p11
     exec /system/bin/resize2fs /dev/block/mmcblk0p11

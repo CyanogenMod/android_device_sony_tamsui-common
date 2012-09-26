@@ -1,3 +1,5 @@
+import init.s1.rc
+import init.target.rc
 import init.sony.usb.rc
 
 on poweroff-chg
