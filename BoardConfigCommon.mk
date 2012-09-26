@@ -5,6 +5,7 @@ TARGET_NO_RADIOIMAGE := true
 BOARD_HAS_NO_MISC_PARTITION := true
 
 # Platform
+TARGET_BOOTLOADER_BOARD_NAME := tamsui
 TARGET_BOARD_PLATFORM := msm7x27a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 
@@ -14,7 +15,6 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 ARCH_ARM_HAVE_TLS_REGISTER := true
 TARGET_CPU_SMP := true
-TARGET_BOOTLOADER_BOARD_NAME := tamsui
 TARGET_CORTEX_CACHE_LINE_32 := true
 
 # Flags
@@ -69,7 +69,7 @@ BOARD_USES_QCOM_PMEM := true
 # GPS
 BOARD_USES_QCOM_LIBRPC := true
 BOARD_USES_QCOM_GPS := true
-BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := Sony
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := sony
 BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
 
 # Bluetooth
@@ -82,23 +82,23 @@ ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
 # Custom boot
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRX_8888"
+#TARGET_RECOVERY_PIXEL_FORMAT := "BGRX_8888"
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 BOARD_CUSTOM_BOOTIMG_MK := device/sony/tamsui-common/custombootimg.mk
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/tamsui-common/releasetools/semc_ota_from_target_files
-BOARD_CUSTOM_GRAPHICS := ../../../device/sony/tamsui-common/recovery/recovery-gfx.c
+#BOARD_CUSTOM_GRAPHICS := ../../../device/sony/tamsui-common/recovery/recovery-gfx.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/sony/tamsui-common/recovery/recovery-keys.c
 BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
-TARGET_BOOTANIMATION_PRELOAD := true
+#TARGET_BOOTANIMATION_PRELOAD := true
 
 # Nicer font rendering
 BOARD_USE_SKIA_LCDTEXT := true
 
 # Audio
 #COMMON_GLOBAL_CFLAGS += -DQCOM_VOIP_ENABLED
-BOARD_HAVE_SONY_AUDIO := true
-BOARD_HAVE_BACK_MIC_CAMCORDER := true
+#BOARD_HAVE_SONY_AUDIO := true
+#BOARD_HAVE_BACK_MIC_CAMCORDER := true
