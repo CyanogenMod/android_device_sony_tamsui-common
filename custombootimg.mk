@@ -9,7 +9,7 @@ $(INSTALLED_BOOTIMAGE_TARGET): $(PRODUCT_OUT)/kernel $(recovery_ramdisk) $(INSTA
 	$(hide) cp -R $(PRODUCT_OUT)/recovery/root/sbin/* $(PRODUCT_OUT)/combinedroot/sbin/
 	$(hide) $(MKBOOTFS) $(PRODUCT_OUT)/combinedroot/ > $(PRODUCT_OUT)/combinedroot.cpio
 	$(hide) cat $(PRODUCT_OUT)/combinedroot.cpio | gzip > $(PRODUCT_OUT)/combinedroot.fs
-	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@0x00208000 $(PRODUCT_OUT)/combinedroot.fs@$(BOARD_FORCE_RAMDISK_ADDRESS),ramdisk device/sony/tamsui-common/config/cmdline.txt@cmdline
+	$(hide) python $(MKELF) -o $@ $(PRODUCT_OUT)/kernel@$(BOARD_FORCE_BOOT_ADDRESS) $(PRODUCT_OUT)/combinedroot.fs@$(BOARD_FORCE_RAMDISK_ADDRESS),ramdisk device/sony/tamsui-common/config/cmdline.txt@cmdline
 
 INSTALLED_RECOVERYIMAGE_TARGET := $(PRODUCT_OUT)/recovery.img
 $(INSTALLED_RECOVERYIMAGE_TARGET): $(MKBOOTIMG) \

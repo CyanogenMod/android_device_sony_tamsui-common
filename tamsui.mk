@@ -123,4 +123,4 @@ PRODUCT_COPY_FILES += \
     device/sony/tamsui-common/recovery/bootrec:root/sbin/bootrec
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mass_storage
+    persist.sys.usb.config=mtp
