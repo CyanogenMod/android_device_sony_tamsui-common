@@ -32,11 +32,7 @@ PRODUCT_COPY_FILES += \
 # Common Qualcomm scripts
 PRODUCT_COPY_FILES += \
     device/sony/tamsui-common/config/init.bcm4330.bt.sh:system/etc/init.bcm4330.bt.sh \
-    device/sony/tamsui-common/config/init.qcom.composition_type.sh:system/etc/init.qcom.composition_type.sh \
-    device/sony/tamsui-common/config/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh \
-    device/sony/tamsui-common/config/init.qcom.post_boot.sh:system/etc/init.qcom.post_boot.sh \
-    device/sony/tamsui-common/config/init.qcom.sdio.sh:system/etc/init.qcom.sdio.sh \
-    device/sony/tamsui-common/config/init.qcom.wifi.sh:system/etc/init.qcom.wifi.sh
+    device/sony/tamsui-common/config/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
 
 # QCOM Display
 PRODUCT_PACKAGES += \
@@ -113,14 +109,12 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Custom init / uevent
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/init.s1.rc:root/init.s1.rc \
-    device/sony/tamsui-common/config/init.sony.rc:root/init.sony.rc \
-    device/sony/tamsui-common/config/init.target.rc:root/init.target.rc \
-    device/sony/tamsui-common/config/ueventd.sony.rc:root/ueventd.sony.rc
+    device/sony/tamsui-common/config/init.Sony.rc:root/init.Sony.rc \
+    device/sony/tamsui-common/config/ueventd.Sony.rc:root/ueventd.Sony.rc
 
 # Recovery bootstrap script
 PRODUCT_COPY_FILES += \
     device/sony/tamsui-common/recovery/bootrec:root/sbin/bootrec
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.sys.usb.config=mtp
+    persist.sys.usb.config=adb
