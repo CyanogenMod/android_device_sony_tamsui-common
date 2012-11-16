@@ -18,7 +18,7 @@ on early-boot
     #recovery
     exec /sbin/bootrec
 
-on emmc-fs-s1
+on emmc-fs
     class_start trimarea
     exec /system/bin/wait4tad
     # modem remote fs
@@ -33,7 +33,7 @@ on emmc-fs-s1
     # set the startup flag to AMSS start-up 
     start setssflagbs
 
-on emmc-fs2-s1
+#on emmc-fs2-s1
     wait /dev/block/mmcblk0p15
     exec /system/bin/e2fsck -y -f /dev/block/mmcblk0p11
     exec /system/bin/resize2fs /dev/block/mmcblk0p11

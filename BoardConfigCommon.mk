@@ -84,23 +84,14 @@ ENABLE_WEBGL := true
 TARGET_FORCE_CPU_UPLOAD := true
 
 # Custom boot
-TARGET_RECOVERY_PIXEL_FORMAT := "BGRA_8888"
 TARGET_RECOVERY_PRE_COMMAND := "touch /cache/recovery/boot;sync;"
 BOARD_CUSTOM_BOOTIMG_MK := device/sony/tamsui-common/custombootimg.mk
 TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/sony/tamsui-common/releasetools/semc_ota_from_target_files
-#BOARD_CUSTOM_GRAPHICS := ../../../device/sony/tamsui-common/recovery/recovery-gfx.c
 BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/sony/tamsui-common/recovery/recovery-keys.c
-BOARD_USE_CUSTOM_RECOVERY_FONT := \"roboto_15x24.h\"
 
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
-#TARGET_BOOTANIMATION_PRELOAD := true
-
 # Nicer font rendering
 BOARD_USE_SKIA_LCDTEXT := true
 
-# Audio
-#COMMON_GLOBAL_CFLAGS += -DQCOM_VOIP_ENABLED
-#BOARD_HAVE_SONY_AUDIO := true
-#BOARD_HAVE_BACK_MIC_CAMCORDER := true
