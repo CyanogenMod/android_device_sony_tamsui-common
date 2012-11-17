@@ -109,8 +109,9 @@ PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
 # Custom init / uevent
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/init.Sony.rc:root/init.Sony.rc \
-    device/sony/tamsui-common/config/ueventd.Sony.rc:root/ueventd.Sony.rc
+    device/sony/tamsui-common/config/init.sony.service.rc:root/init.sony.service.rc \
+    device/sony/tamsui-common/config/init.sony.rc:root/init.sony.rc \
+    device/sony/tamsui-common/config/ueventd.sony.rc:root/ueventd.sony.rc
 
 # Recovery bootstrap script
 PRODUCT_COPY_FILES += \

@@ -1,1 +1,0 @@
-console=ttyHSL0,115200,n8 androidboot.hardware=Sony androidboot.emmc=true androidboot.serialno=37714ecd androidboot.baseband=msm
