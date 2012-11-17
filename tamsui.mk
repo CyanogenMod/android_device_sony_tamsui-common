@@ -31,14 +31,13 @@ PRODUCT_COPY_FILES += \
 
 # Common Qualcomm scripts
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/init.bcm4330.bt.sh:system/etc/init.bcm4330.bt.sh \
     device/sony/tamsui-common/config/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
 
 # QCOM Display
 PRODUCT_PACKAGES += \
-    copybit.msm7x27a \
-    gralloc.msm7x27a \
-    hwcomposer.msm7x27a \
+    copybit.msm7627a \
+    gralloc.msm7627a \
+    hwcomposer.msm7627a \
     libgenlock \
     libI420colorconvert \
     libmemalloc \
@@ -47,20 +46,11 @@ PRODUCT_PACKAGES += \
     libqdutils \
     libtilerenderer
 
-# NFC Support
-PRODUCT_PACKAGES += \
-    libnfc \
-    libnfc_jni \
-    Nfc \
-    Tag \
-    com.android.nfc_extras
-
-
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio_policy.msm7x27a \
-    audio.primary.msm7x27a \
+    audio_policy.msm7627a \
+    audio.primary.msm7627a \
     audio_policy.conf \
     libaudioutils
 
@@ -80,11 +70,11 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm7x27a
+    gps.msm7627a
 
 # Light
 PRODUCT_PACKAGES += \
-    lights.msm7x27a
+    lights.msm7627a
 
 # Misc
 PRODUCT_PACKAGES += \

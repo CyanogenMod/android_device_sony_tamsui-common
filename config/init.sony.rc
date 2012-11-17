@@ -17,13 +17,14 @@ on early-init
     export EXTERNAL_STORAGE /storage/sdcard0
     export SECONDARY_STORAGE /storage/sdcard1
 
-on init
-    # Set permissions for persist partition
-    mkdir /persist 0771 system system
+#on init
+#    # Set permissions for persist partition
+#    mkdir /persist 0771 system system
 
 on emmc-fs
     mount_all /fstab.sony
 
+on fs
     # SEMC, TA Daemon
     class_start trimarea
     exec /system/bin/wait4tad
