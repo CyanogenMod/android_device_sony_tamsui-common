@@ -44,7 +44,7 @@ on early-boot
     #recovery
     exec /sbin/bootrec
 
-#on post-fs
+on post-fs
     exec system/bin/btnvtool -O
     chown bluetooth bluetooth /sys/module/bluetooth_power/parameters/power
     chown bluetooth bluetooth /sys/class/rfkill/rfkill0/type
