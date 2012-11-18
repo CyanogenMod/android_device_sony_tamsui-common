@@ -9,16 +9,16 @@ TARGET_BOOTLOADER_BOARD_NAME := tamsui
 TARGET_BOARD_PLATFORM := msm7627a
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 
-# Architecture
-TARGET_CPU_ABI := armeabi-v7a
+TARGET_CPU_ABI  := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
+TARGET_CPU_SMP := true
+TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
+TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
+TARGET_CORTEX_CACHE_LINE_32 := true
+TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
-ARCH_ARM_HAVE_VFP := true
 
-# Flags
-TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
-TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_NO_SECURE_PLAYBACK
 COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DANCIENT_GL
 
@@ -43,17 +43,20 @@ WIFI_DRIVER_FW_PATH_AP           := "/vendor/firmware/fw_bcmdhd_apsta.bin"
 WIFI_DRIVER_FW_PATH_P2P          := "/vendor/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path"
 
+# Audio
+#BOARD_USES_AUDIO_LEGACY := true
+
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
 BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
-TARGET_HAVE_BYPASS := false
-TARGET_USES_SF_BYPASS := false
-TARGET_USES_C2D_COMPOSITION := false
-TARGET_USES_OVERLAY := false
-TARGET_NO_BYPASS_CROPPING := false
+#TARGET_HAVE_BYPASS := false
+#TARGET_USES_SF_BYPASS := false
+#TARGET_USES_C2D_COMPOSITION := false
+#TARGET_USES_OVERLAY := false
+#TARGET_NO_BYPASS_CROPPING := false
 TARGET_NO_HW_VSYNC := true
 BOARD_EGL_CFG := device/sony/tamsui-common/config/egl.cfg
 

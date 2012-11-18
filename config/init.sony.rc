@@ -29,7 +29,7 @@ on fs
     class_start trimarea
     exec /system/bin/wait4tad
     class_start emmc
-
+    start setssflagbc
     write /sys/devices/virtual/bdi/179:32/read_ahead_kb 512
 
 # import cne init file
@@ -126,6 +126,8 @@ on post-fs
     chown root system /sys/class/input/input8/reg
     chown root system /sys/class/input/input8/sensitivity
     chown root system /sys/class/input/input8/value
+
+    chown root system /sys/class/compass/akm8975/accel
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio
