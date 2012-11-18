@@ -107,5 +107,48 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/sony/tamsui-common/recovery/bootrec:root/sbin/bootrec
 
+# Radio
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.telephony.ril_class=SonyQualcommRIL \
+    ro.telephony.ril.v3=skipnullaid \
+    rild.libpath=/system/lib/libril-qc-qmi-1.so \
+    rild.libargs=-d /dev/smd0 \
+    persist.rild.nitz_plmn= \
+    persist.rild.nitz_long_ons_0= \
+    persist.rild.nitz_long_ons_1= \
+    persist.rild.nitz_long_ons_2= \
+    persist.rild.nitz_long_ons_3= \
+    persist.rild.nitz_short_ons_0= \
+    persist.rild.nitz_short_ons_1= \
+    persist.rild.nitz_short_ons_2= \
+    persist.rild.nitz_short_ons_3= \
+    ril.subscription.types=NV,RUIM \
+    DEVICE_PROVISIONED=1 \
+    keyguard.no_require_sim=1 \
+    ro.ril.hsxpa=1 \
+    ro.ril.gprsclass=10 \
+    ro.use_data_netmgrd=true \
+    persist.data_netmgrd_nint=3 \
+    ro.ril.transmitpower=true
+
+# Graphics
+PRODUCT_PROPERTY_OVERRIDES += \
+    com.qc.hardware=true \
+    debug.sf.hw=1 \
+    debug.composition.type=mdp
+
+# QCOM CpuGovernorService
+PRODUCT_PROPERTY_OVERRIDES += \
+    dev.pm.dyn_samplingrate=1
+
+# OpenGL ES
+PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072
+
+# Wifi
+PRODUCT_PROPERTY_OVERRIDES += \
+    wifi.interface=wlan0 \
+    wifi.supplicant_scan_interval=30
+
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=adb
