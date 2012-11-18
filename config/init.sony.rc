@@ -414,9 +414,6 @@ on property:ro.use_data_netmgrd=false
     # netmgr not supported on specific target
     stop netmgrd
 
-
-
-
 service bridgemgrd /system/bin/bridgemgrd
     class late_start
     user radio
@@ -430,14 +427,14 @@ service port-bridge /system/bin/port-bridge /dev/smd0 /dev/ttyGS0
     disabled
 
 #SW5-Conn-JC-RemoveQCProfiles-[
-on property:ro.baseband="msm"
-    # Enable BT-DUN only for all msms
-    setprop ro.qualcomm.bluetooth.dun false
-    setprop ro.qualcomm.bluetooth.map false
+#on property:ro.baseband="msm"
+#    # Enable BT-DUN only for all msms
+#    setprop ro.qualcomm.bluetooth.dun false
+#    setprop ro.qualcomm.bluetooth.map false
 #SW5-Conn-JC-RemoveQCProfiles-]
 
 service qmiproxy /system/bin/qmiproxy
-    class late_start
+    class main
     user radio
     group radio
     disabled
@@ -474,53 +471,53 @@ service wiperiface /system/bin/wiperiface
 #    start qcom-post-boot
 
 
-service ppd /system/bin/mm-pp-daemon
-    class late_start
-    user system
-    socket pps stream 0660 system system graphics
-    group system graphics
+#service ppd /system/bin/mm-pp-daemon
+#    class late_start
+#    user system
+#    socket pps stream 0660 system system graphics
+#    group system graphics
 
-service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
-    class late_start
-    group radio wifi inet
-    disabled
-    oneshot
+#service ds_fmc_appd /system/bin/ds_fmc_appd -p "rmnet0" -D
+#    class late_start
+#    group radio wifi inet
+#    disabled
+#    oneshot
+#
+#on property:persist.data.ds_fmc_app.mode=1
+#    start ds_fmc_appd
 
-on property:persist.data.ds_fmc_app.mode=1
-    start ds_fmc_appd
+#on property:ro.data.large_tcp_window_size=true
+#    # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
+#    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
+#
+#service time_daemon /system/bin/time_daemon
+#    class late_start
+#    user root
+#    group root
+#    oneshot
+#    disabled
 
-on property:ro.data.large_tcp_window_size=true
-    # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
-    write /proc/sys/net/ipv4/tcp_adv_win_scale  1
+#on property:persist.timed.enable=true
+#    start time_daemon
 
-service time_daemon /system/bin/time_daemon
-    class late_start
-    user root
-    group root
-    oneshot
-    disabled
+#service ril-daemon1 /system/bin/rild -c 1
+#    class late_start
+#    socket rild1 stream 660 root radio
+#    socket rild-debug1 stream 660 radio system
+#    user root
+#    disabled
+#    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
 
-on property:persist.timed.enable=true
-    start time_daemon
+#service profiler_daemon /system/bin/profiler_daemon
+#    class late_start
+#    user root
+#    group root
+#    disabled
 
-service ril-daemon1 /system/bin/rild -c 1
-    class late_start
-    socket rild1 stream 660 root radio
-    socket rild-debug1 stream 660 radio system
-    user root
-    disabled
-    group radio cache inet misc audio sdcard_rw qcom_oncrpc diag
+#service sdcard /system/bin/sdcard /data/media 1023 1023
+#    class late_start
+#    disabled
 
-service profiler_daemon /system/bin/profiler_daemon
-    class late_start
-    user root
-    group root
-    disabled
-
-service sdcard /system/bin/sdcard /data/media 1023 1023
-    class late_start
-    disabled
-
-on property:persist.fuse_sdcard=true
-    start sdcard
+#on property:persist.fuse_sdcard=true
+#    start sdcard
 
