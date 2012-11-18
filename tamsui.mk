@@ -1,8 +1,5 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-# Recovery resources
-$(call inherit-product, device/sony/tamsui-common/recovery/recovery.mk)
-
 DEVICE_PACKAGE_OVERLAYS += device/sony/tamsui-common/overlay
 
 # Permissions
@@ -102,10 +99,6 @@ PRODUCT_COPY_FILES += \
     device/sony/tamsui-common/config/init.sony.service.rc:root/init.sony.service.rc \
     device/sony/tamsui-common/config/init.sony.rc:root/init.sony.rc \
     device/sony/tamsui-common/config/ueventd.sony.rc:root/ueventd.sony.rc
-
-# Recovery bootstrap script
-PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/recovery/bootrec:root/sbin/bootrec
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \

@@ -40,8 +40,6 @@ on early-boot
 
     # set RLIMIT_MEMLOCK to 64MB
     setrlimit 8 67108864 67108864
-    #recovery
-    exec /sbin/bootrec
 
 on post-fs
     exec system/bin/btnvtool -O
