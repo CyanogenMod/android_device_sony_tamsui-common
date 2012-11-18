@@ -110,9 +110,9 @@ PRODUCT_COPY_FILES += \
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SonyQualcommRIL \
-    ro.telephony.ril.v3=skipnullaid \
-    rild.libpath=/system/lib/libril-qc-qmi-1.so \
-    rild.libargs=-d/dev/smd0 \
+    ro.telephony.ril.v3=skipnullaid,skippinpukcount \
+    rild.libpath=/system/lib/libril-qc-1.so \
+    rild.libargs=-d /dev/smd0 \
     persist.rild.nitz_plmn= \
     persist.rild.nitz_long_ons_0= \
     persist.rild.nitz_long_ons_1= \
