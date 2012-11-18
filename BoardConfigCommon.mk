@@ -52,11 +52,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
-#TARGET_HAVE_BYPASS := false
-#TARGET_USES_SF_BYPASS := false
-#TARGET_USES_C2D_COMPOSITION := false
-#TARGET_USES_OVERLAY := false
-#TARGET_NO_BYPASS_CROPPING := false
 TARGET_NO_HW_VSYNC := true
 BOARD_EGL_CFG := device/sony/tamsui-common/config/egl.cfg
 
@@ -95,7 +90,7 @@ BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
 # Nicer font rendering
-BOARD_USE_SKIA_LCDTEXT := true
+#BOARD_USE_SKIA_LCDTEXT := true
 
 #Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
