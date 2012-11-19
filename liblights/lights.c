@@ -1,7 +1,8 @@
 /*
  * Copyright (C) 2008 The Android Open Source Project
  * Copyright (C) 2011 Diogo Ferreira <defer@cyanogenmod.com>
- * Copyright (C) 2011 The CyanogenMod Project <http://www.cyanogenmod.com>
+ * Copyright (C) 2012 Alin Jerpelea <jerpelea@gmail.com>
+ * Copyright (C) 2012 The CyanogenMod Project <http://www.cyanogenmod.com>
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -48,12 +49,6 @@ enum {
 	LED_GREEN,
 	LED_BLUE,
 	LED_BLANK
-};
-
-enum {
-	MANUAL = 0,
-	AUTOMATIC,
-	MANUAL_SENSOR
 };
 
 static int write_int (const char *path, int value) {
@@ -114,24 +109,10 @@ static int rgb_to_brightness (struct light_state_t const* state) {
 static int set_light_backlight (struct light_device_t *dev, struct light_state_t const *state) {
 	int err = 0;
 	int brightness = rgb_to_brightness(state);
-	int als_mode;
-
-	switch (state->brightnessMode) {
-		case BRIGHTNESS_MODE_SENSOR:
-			als_mode = AUTOMATIC;
-			break;
-		case BRIGHTNESS_MODE_USER:
-			als_mode = BRIGHTNESS_MODE_USER;
-			break;
-		default:
-			als_mode = MANUAL_SENSOR;
-			break;
-	}
 
 	ALOGV("%s brightness=%d color=0x%08x", __func__,brightness,state->color);
 	pthread_mutex_lock(&g_lock);
 	g_backlight = brightness;
-	err = write_int (ALS_FILE, als_mode);
 	err = write_int (LCD_BACKLIGHT_FILE, brightness);
 	pthread_mutex_unlock(&g_lock);
 	return err;
@@ -143,9 +124,10 @@ static int set_light_buttons (struct light_device_t *dev, struct light_state_t c
 	int on = is_lit(state);
 	pthread_mutex_lock(&g_lock);
 
-	for (i = 0; i < sizeof(BUTTON_BACKLIGHT_FILE)/sizeof(BUTTON_BACKLIGHT_FILE[0]); i++) {
-		err = write_int (BUTTON_BACKLIGHT_FILE[i],on?255:0);
-	}
+	if (on >0)
+		err = write_string (LED_CONTROL_FILE, "01 3 1");
+	else
+		err = write_string (LED_CONTROL_FILE, "01 3 0");
 
 	pthread_mutex_unlock(&g_lock);
 
@@ -155,36 +137,48 @@ static int set_light_buttons (struct light_device_t *dev, struct light_state_t c
 static void set_shared_light_locked (struct light_device_t *dev, struct light_state_t *state) {
 	int r, g, b;
 	int err = 0;
-       int delayOn,delayOff;
 
 	r = (state->color >> 16) & 0xFF;
 	g = (state->color >> 8) & 0xFF;
 	b = (state->color) & 0xFF;
 
-        delayOn = state->flashOnMS;
-	delayOff = state->flashOffMS;
-
 	if (state->flashMode != LIGHT_FLASH_NONE) {
-		err = write_string (RED_LED_FILE_TRIGGER, "timer");
-		err = write_string (GREEN_LED_FILE_TRIGGER, "timer");
-		err = write_string (BLUE_LED_FILE_TRIGGER, "timer");
-		
-		err = write_int (RED_LED_FILE_DELAYON, delayOn);
-		err = write_int (GREEN_LED_FILE_DELAYON, delayOn);
-		err = write_int (BLUE_LED_FILE_DELAYON, delayOn);
-		
-		err = write_int (RED_LED_FILE_DELAYOFF, delayOff);
-		err = write_int (GREEN_LED_FILE_DELAYOFF, delayOff);
-		err = write_int (BLUE_LED_FILE_DELAYOFF, delayOff);
+#ifndef FANCY_NOTIFICATION
+		err = write_string (LED_CONTROL_FILE, "02 0 1");
+		err = write_string (LED_CONTROL_FILE, "02 1 1");
+		err = write_string (LED_CONTROL_FILE, "02 2 1");
+#else
+
+		err = write_string (LED_CONTROL_FILE, "02 4 1");
+		err = write_string (LED_CONTROL_FILE, "02 5 1");
+		err = write_string (LED_CONTROL_FILE, "02 6 1");
+#endif
 	} else {
-		err = write_string (RED_LED_FILE_TRIGGER, "none");
-		err = write_string (GREEN_LED_FILE_TRIGGER, "none");
-		err = write_string (BLUE_LED_FILE_TRIGGER, "none");
+#ifndef FANCY_NOTIFICATION
+		err = write_string (LED_CONTROL_FILE, "02 0 0");
+		err = write_string (LED_CONTROL_FILE, "02 1 0");
+		err = write_string (LED_CONTROL_FILE, "02 2 0");
+#else
+		err = write_string (LED_CONTROL_FILE, "02 4 0");
+		err = write_string (LED_CONTROL_FILE, "02 5 0");
+		err = write_string (LED_CONTROL_FILE, "02 6 0");
+#endif
 	}
 
-	err = write_int (RED_LED_FILE, r);
-	err = write_int (GREEN_LED_FILE, g);
-	err = write_int (BLUE_LED_FILE, b);
+	if (r>0)
+		err = write_string (LED_CONTROL_FILE, "01 0 1");
+	else
+		err = write_string (LED_CONTROL_FILE, "01 0 0");
+
+	if (g>0)
+		err = write_string (LED_CONTROL_FILE, "01 1 1");
+	else
+		err = write_string (LED_CONTROL_FILE, "01 1 0");
+
+	if (b>0)
+		err = write_string (LED_CONTROL_FILE, "01 2 1");
+	else
+		err = write_string (LED_CONTROL_FILE, "01 2 0");
 }
 
 static void handle_shared_battery_locked (struct light_device_t *dev) {
@@ -270,6 +264,6 @@ struct hw_module_t HAL_MODULE_INFO_SYM = {
 	.version_minor = 0,
 	.id = LIGHTS_HARDWARE_MODULE_ID,
 	.name = "Sony lights module",
-	.author = "Diogo Ferreira <defer@cyanogenmod.com>, Andreas Makris <Andreas.Makris@gmail.com>",
+	.author = "Diogo Ferreira <defer@cyanogenmod.com>,Alin Jerpelea<jerpelea@gmail.com>",
 	.methods = &lights_module_methods,
 };

@@ -29,14 +29,19 @@ busybox mount -t proc proc /proc
 busybox mount -t sysfs sysfs /sys
 busybox mount -t ext4 ${BOOTREC_CACHE} /cache
 
-# trigger amber LED
-busybox echo 255 > ${BOOTREC_LED_RED}
-busybox echo 0 > ${BOOTREC_LED_GREEN}
-busybox echo 255 > ${BOOTREC_LED_BLUE}
+# trigger ON amber LED
+busybox echo "01 4 1" > ${BOOTREC_CONTROL_LED}
+busybox echo "01 5 0" > ${BOOTREC_CONTROL_LED}
+busybox echo "01 6 1" > ${BOOTREC_CONTROL_LED}
 
 # keycheck
 busybox cat ${BOOTREC_EVENT} > /dev/keycheck&
 busybox sleep 3
+
+# trigger OFF amber LED
+busybox echo "01 4 0" > ${BOOTREC_CONTROL_LED}
+busybox echo "01 5 0" > ${BOOTREC_CONTROL_LED}
+busybox echo "01 6 0" > ${BOOTREC_CONTROL_LED}
 
 # android ramdisk
 load_image=/sbin/ramdisk.cpio

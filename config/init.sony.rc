@@ -196,6 +196,13 @@ on post-fs
 
     mount debugfs debugfs /sys/kernel/debug
 
+    #Permission for Lights
+    chown system system /sys/class/led/fih_led/control
+    chown system system /sys/devices/virtual/graphics/fb0/msmfb_bl0/brightness
+
+    #vibrator
+    chown system system /sys/class/vibrator/pmic-vib/control
+
 on post-fs-data
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
