@@ -28,9 +28,9 @@ PRODUCT_COPY_FILES += \
 
 # QCOM Display
 PRODUCT_PACKAGES += \
-    copybit.msm7627a \
-    gralloc.msm7627a \
-    hwcomposer.msm7627a \
+    copybit.msm7x27a \
+    gralloc.msm7x27a \
+    hwcomposer.msm7x27a \
     libgenlock \
     libI420colorconvert \
     libmemalloc \
@@ -42,8 +42,8 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio_policy.msm7627a \
-    audio.primary.msm7627a \
+    audio_policy.msm7x27a \
+    audio.primary.msm7x27a \
     audio_policy.conf \
     libaudioutils
 
@@ -63,11 +63,11 @@ PRODUCT_PACKAGES += \
 
 # GPS
 PRODUCT_PACKAGES += \
-    gps.msm7627a
+    gps.msm7x27a
 
 # Light
 PRODUCT_PACKAGES += \
-    lights.msm7627a
+    lights.msm7x27a
 
 # Misc
 PRODUCT_PACKAGES += \
