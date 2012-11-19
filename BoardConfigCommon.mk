@@ -87,6 +87,9 @@ BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/sony/tamsui-common/recovery/rec
 BOARD_UMS_LUNFILE := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/file"
 
+#custom vibrator
+#BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/tamsui-common/vibrator/vibrator.c
+
 # Nicer font rendering
 #BOARD_USE_SKIA_LCDTEXT := true
 
