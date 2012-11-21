@@ -124,13 +124,6 @@ on post-fs
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
-    setprop wifi.interface wlan0
-
-    setprop ro.wifi.eap_sim_enabled true
-
-    # Enable Bluetooth 802.11 PAL when Bluetooth is turned on
-    setprop ro.config.bt.amp no
-
     #Set SUID bit for usbhub
     chmod 4755 /system/bin/usbhub
     chmod 755 /system/bin/usbhub_init
