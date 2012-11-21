@@ -48,9 +48,6 @@ WIFI_DRIVER_FW_PATH_PARAM        := "/sys/module/bcmdhd/parameters/firmware_path
 
 BOARD_LEGACY_NL80211_STA_EVENTS  := true
 
-# Audio
-#BOARD_USES_AUDIO_LEGACY := true
-
 # Graphics
 USE_OPENGL_RENDERER := true
 TARGET_NO_HW_VSYNC := true
