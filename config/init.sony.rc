@@ -43,8 +43,6 @@ on post-fs
     chmod 0660 /sys/module/hci_smd/parameters/hcismd_set
     chmod 0660 /sys/class/rfkill/rfkill0/state
     chmod 0660 /proc/bluetooth/sleep/proto
-    chown bluetooth bluetooth /dev/ttyHS0
-    chmod 0660 /dev/ttyHS0
     chown bluetooth bluetooth /sys/devices/platform/msm_serial_hs.0/clock
     chmod 0660 /sys/devices/platform/msm_serial_hs.0/clock
 
@@ -130,9 +128,6 @@ on post-fs
 
     setprop ro.wifi.eap_sim_enabled true
 
-    chown wifi wifi /dev/wlandev
-    chmod 0660 /dev/wlandev
-
     # Enable Bluetooth 802.11 PAL when Bluetooth is turned on
     setprop ro.config.bt.amp no
 
@@ -142,14 +137,6 @@ on post-fs
 
     #Remove SUID bit for iproute2 ip tool
     chmod 0755 /system/bin/ip
-
-    #port-bridge
-    chmod 0660 /dev/smd0
-    chown system system /dev/smd0
-
-    #BT DUN port-bridge
-    chmod 0660 /dev/smd7
-    chown bluetooth bluetooth /dev/smd7
 
     chmod 0444 /sys/devices/platform/msm_hsusb/gadget/usb_state
 
@@ -166,10 +153,6 @@ on post-fs
 
     #For bridgemgr daemon to inform the USB driver of the correct transport
     chown radio radio /sys/class/android_usb/f_rmnet_smd_sdio/transport
-
-    # Change group to allow PRC process add logs to smem
-    chmod 0660 /dev/smem_log
-    chown root qcom_oncrpc /dev/smem_log
 
     # Configure and enable KSM
     write /sys/kernel/mm/ksm/pages_to_scan 600
