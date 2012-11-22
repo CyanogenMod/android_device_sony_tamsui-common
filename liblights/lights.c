@@ -125,9 +125,9 @@ static int set_light_buttons (struct light_device_t *dev, struct light_state_t c
 	pthread_mutex_lock(&g_lock);
 
 	if (on >0)
-		err = write_string (LED_CONTROL_FILE, "01 3 1");
+		err = write_string (LED_CONTROL_FILE, KEY_LED_ON);
 	else
-		err = write_string (LED_CONTROL_FILE, "01 3 0");
+		err = write_string (LED_CONTROL_FILE, KEY_LED_OFF);
 
 	pthread_mutex_unlock(&g_lock);
 
@@ -143,42 +143,29 @@ static void set_shared_light_locked (struct light_device_t *dev, struct light_st
 	b = (state->color) & 0xFF;
 
 	if (state->flashMode != LIGHT_FLASH_NONE) {
-#ifndef FANCY_NOTIFICATION
-		err = write_string (LED_CONTROL_FILE, "02 0 1");
-		err = write_string (LED_CONTROL_FILE, "02 1 1");
-		err = write_string (LED_CONTROL_FILE, "02 2 1");
-#else
-
-		err = write_string (LED_CONTROL_FILE, "02 4 1");
-		err = write_string (LED_CONTROL_FILE, "02 5 1");
-		err = write_string (LED_CONTROL_FILE, "02 6 1");
-#endif
+		err = write_string (LED_CONTROL_FILE, RED_LED_BLINK_ON);
+		err = write_string (LED_CONTROL_FILE, GREEN_LED_BLINK_ON);
+		err = write_string (LED_CONTROL_FILE, BLUE_LED_BLINK_ON);
 	} else {
-#ifndef FANCY_NOTIFICATION
-		err = write_string (LED_CONTROL_FILE, "02 0 0");
-		err = write_string (LED_CONTROL_FILE, "02 1 0");
-		err = write_string (LED_CONTROL_FILE, "02 2 0");
-#else
-		err = write_string (LED_CONTROL_FILE, "02 4 0");
-		err = write_string (LED_CONTROL_FILE, "02 5 0");
-		err = write_string (LED_CONTROL_FILE, "02 6 0");
-#endif
+		err = write_string (LED_CONTROL_FILE, RED_LED_BLINK_OFF);
+		err = write_string (LED_CONTROL_FILE, GREEN_LED_BLINK_OFF);
+		err = write_string (LED_CONTROL_FILE, BLUE_LED_BLINK_OFF);
 	}
 
 	if (r>0)
-		err = write_string (LED_CONTROL_FILE, "01 0 1");
+		err = write_string (LED_CONTROL_FILE, RED_LED_ON);
 	else
-		err = write_string (LED_CONTROL_FILE, "01 0 0");
+		err = write_string (LED_CONTROL_FILE, RED_LED_OFF);
 
 	if (g>0)
-		err = write_string (LED_CONTROL_FILE, "01 1 1");
+		err = write_string (LED_CONTROL_FILE, GREEN_LED_ON);
 	else
-		err = write_string (LED_CONTROL_FILE, "01 1 0");
+		err = write_string (LED_CONTROL_FILE, GREEN_LED_OFF);
 
 	if (b>0)
-		err = write_string (LED_CONTROL_FILE, "01 2 1");
+		err = write_string (LED_CONTROL_FILE, BLUE_LED_ON);
 	else
-		err = write_string (LED_CONTROL_FILE, "01 2 0");
+		err = write_string (LED_CONTROL_FILE, BLUE_LED_OFF);
 }
 
 static void handle_shared_battery_locked (struct light_device_t *dev) {
