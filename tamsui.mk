@@ -122,17 +122,21 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Graphics
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.opengles.version=131072 \
     com.qc.hardware=true \
     debug.sf.hw=1 \
-    debug.composition.type=mdp
+    debug.fb.rgb565=0 \
+    debug.composition.type=mdp \
+    persist.sys.use_dithering=1
+
+## Reference values from CAF
+PRODUCT_PROPERTY_OVERRIDES += \
+    hwui.render_dirty_regions=false \
+    ro.max.fling_velocity=4000
 
 # QCOM CpuGovernorService
 PRODUCT_PROPERTY_OVERRIDES += \
     dev.pm.dyn_samplingrate=1
-
-# OpenGL ES
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.opengles.version=131072
 
 # Wifi
 PRODUCT_PROPERTY_OVERRIDES += \

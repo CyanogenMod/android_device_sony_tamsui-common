@@ -13,17 +13,13 @@ TARGET_CPU_ABI  := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_SMP := true
-TARGET_AVOID_DRAW_TEXTURE_EXTENSION := true
-TARGET_USES_16BPPSURFACE_FOR_OPAQUE := true
 TARGET_CORTEX_CACHE_LINE_32 := true
-TARGET_USE_SPARROW_BIONIC_OPTIMIZATION := true
 ARCH_ARM_HAVE_TLS_REGISTER := true
 
 TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
 TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 COMMON_GLOBAL_CFLAGS += -DQCOM_HARDWARE -DQCOM_SONY_HARDWARE
-COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK -DICS_CAMERA_BLOB -DQCOM_ICS_DECODERS
 
 # Kernel information
 TARGET_KERNEL_SOURCE := kernel/sony/msm7x27a
@@ -50,13 +46,20 @@ BOARD_LEGACY_NL80211_STA_EVENTS  := true
 
 # Graphics
 USE_OPENGL_RENDERER := true
+TARGET_USES_OVERLAY := false
+TARGET_HAVE_BYPASS  := false
+TARGET_USES_GENLOCK := true
+TARGET_QCOM_HDMI_OUT := false
+TARGET_GRALLOC_USES_ASHMEM := true
 TARGET_NO_HW_VSYNC := true
 BOARD_EGL_CFG := device/sony/tamsui-common/config/egl.cfg
 
 TARGET_PROVIDES_LIBLIGHTS := true
 
 # Workaround for missing symbols in camera
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB -DQCOM_NO_SECURE_PLAYBACK -DQCOM_ICS_DECODERS
 BOARD_NEEDS_MEMORYHEAPPMEM := true
+#TARGET_DISABLE_ARM_PIE := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
@@ -89,9 +92,6 @@ TARGET_USE_CUSTOM_LUN_FILE_PATH := "/sys/devices/platform/msm_hsusb/gadget/lun0/
 
 # Custom vibrator
 BOARD_HAS_VIBRATOR_IMPLEMENTATION := ../../device/sony/tamsui-common/vibrator/vibrator.c
-
-# Nicer font rendering
-#BOARD_USE_SKIA_LCDTEXT := true
 
 #Bootanimation
 TARGET_BOOTANIMATION_PRELOAD := true
