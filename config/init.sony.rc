@@ -112,7 +112,17 @@ on post-fs
     chown root system /sys/class/input/input8/sensitivity
     chown root system /sys/class/input/input8/value
 
-    chown root system /sys/class/compass/akm8975/accel
+    chown root system /dev/akm8975_dev
+    chmod 0660 /dev/akm8975_dev
+    chown root system /data/misc/akmd_set.txt
+    chmod 0660 /data/misc/akmd_set.txt
+    chown system system /sys/class/compass/akm8975/enable_acc
+    chown system system /sys/class/compass/akm8975/enable_mag
+    chown system system /sys/class/compass/akm8975/enable_ori
+    chown system system /sys/class/compass/akm8975/delay_acc
+    chown system system /sys/class/compass/akm8975/delay_mag
+    chown system system /sys/class/compass/akm8975/delay_ori
+    chown system system /sys/class/compass/akm8975/accel
 
     #Create QMUX deamon socket area
     mkdir /dev/socket/qmux_radio 0770 radio radio

@@ -1,3 +1,8 @@
 service rmt_storage /system/bin/rmt_storage
     class emmc
     user root
+
+# Accelerometer
+service akmd /system/bin/akmd8975
+    class main
+    user root
