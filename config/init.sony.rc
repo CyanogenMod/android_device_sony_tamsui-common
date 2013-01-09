@@ -189,6 +189,9 @@ on post-fs
     #vibrator
     chown system system /sys/class/vibrator/pmic-vib/control
 
+    #buffer fix
+    write /sys/module/msm_fb/parameters/align_buffer 1
+
 on post-fs-data
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth
 
