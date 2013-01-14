@@ -136,9 +136,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     com.qc.hardware=true \
     debug.sf.hw=1 \
-    debug.fb.rgb565=0 \
-    debug.composition.type=mdp \
-    persist.sys.use_dithering=1
+    debug.enabletr=false \
+    debug.composition.type=mdp
+#    persist.sys.use_dithering=1
 
 ## Reference values from CAF
 PRODUCT_PROPERTY_OVERRIDES += \
