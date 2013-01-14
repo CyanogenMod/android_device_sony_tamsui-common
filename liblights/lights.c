@@ -147,11 +147,6 @@ static void set_shared_light_locked (struct light_device_t *dev, struct light_st
 		err = write_string (LED_CONTROL_FILE, GREEN_LED_BLINK_ON);
 		err = write_string (LED_CONTROL_FILE, BLUE_LED_BLINK_ON);
 	} else {
-		err = write_string (LED_CONTROL_FILE, RED_LED_BLINK_OFF);
-		err = write_string (LED_CONTROL_FILE, GREEN_LED_BLINK_OFF);
-		err = write_string (LED_CONTROL_FILE, BLUE_LED_BLINK_OFF);
-	}
-
 	if (r>0)
 		err = write_string (LED_CONTROL_FILE, RED_LED_ON);
 	else
@@ -166,6 +161,8 @@ static void set_shared_light_locked (struct light_device_t *dev, struct light_st
 		err = write_string (LED_CONTROL_FILE, BLUE_LED_ON);
 	else
 		err = write_string (LED_CONTROL_FILE, BLUE_LED_OFF);
+	}
+
 }
 
 static void handle_shared_battery_locked (struct light_device_t *dev) {
