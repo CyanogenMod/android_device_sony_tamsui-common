@@ -6,3 +6,9 @@ service rmt_storage /system/bin/rmt_storage
 service akmd /system/bin/akmd8975
     class main
     user root
+
+service btld /system/bin/btld -lpm 1
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
