@@ -1,3 +1,4 @@
+import init.device.rc
 import init.sony.usb.rc
 import init.sony.service.rc
 
@@ -276,12 +277,6 @@ service setssflagbc /system/bin/startupflag bootcomplete
     oneshot
     disabled
 
-#service atfwd /system/bin/ATFWD-daemon
-#    class late_start
-#    user main
-#    group system radio
-#    onrestart /system/bin/log -t RIL-ATFWD -p w "ATFWD daemon restarted"
-
 on property:dev.bootcomplete=1
     start setssflagbc
 
@@ -305,7 +300,7 @@ service ta_rmt_service /system/bin/ta_rmt_service
     class emmc
     user root
 
-service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
+service p2p_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -N \
     -ip2p0 -Dnl80211 -c/data/misc/wifi/p2p_supplicant.conf -e/data/misc/wifi/entropy.bin -puse_p2p_group_interface=1
     #   we will start as root and wpa_supplicant will switch to user wifi
@@ -317,7 +312,7 @@ service p2p_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
     disabled
     oneshot
 
-service wpa_supplicant /system/bin/logwrapper /system/bin/wpa_supplicant \
+service wpa_supplicant /system/bin/wpa_supplicant \
     -iwlan0 -Dnl80211 -c/data/misc/wifi/wpa_supplicant.conf -e/data/misc/wifi/entropy.bin
     #   we will start as root and wpa_supplicant will switch to user wifi
     #   after setting up the capabilities required for WEXT
