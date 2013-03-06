@@ -49,8 +49,13 @@ PRODUCT_PACKAGES += \
     libaudioutils
 
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/AudioFilter.csv:system/etc/AudioFilter.csv \
-    device/sony/tamsui-common/config/media_codecs.xml:system/etc/media_codecs.xml
+    device/sony/tamsui-common/config/media_profiles.xml:system/etc/media_profiles.xml \
+    device/sony/tamsui-common/config/media_codecs.xml:system/etc/media_codecs.xml \
+    device/sony/tamsui-common/config/AudioFilter.csv:system/etc/AudioFilter.csv
+
+# QCOM Power
+PRODUCT_PACKAGES += \
+    power.msm7x27a \
 
 # Omx
 PRODUCT_PACKAGES += \
