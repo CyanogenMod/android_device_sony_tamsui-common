@@ -73,8 +73,11 @@ PRODUCT_PACKAGES += \
 
 # Misc
 PRODUCT_PACKAGES += \
-    FmRadioReceiver \
     com.android.future.usb.accessory
+
+# FmRadio
+#PRODUCT_PACKAGES += \
+#    FmRadioReceiver
 
 # Live Wallpapers
 PRODUCT_PACKAGES += \

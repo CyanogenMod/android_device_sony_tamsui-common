@@ -79,8 +79,8 @@ TARGET_NEEDS_BLUETOOTH_INIT_DELAY := true
 TARGET_CUSTOM_BLUEDROID := ../../../device/sony/tamsui-common/bluedroid/bluetooth.c
 
 #FM Radio
-BOARD_USES_STE_FMRADIO := true
-COMMON_GLOBAL_CFLAGS += -DSTE_FM
+#BOARD_USES_STE_FMRADIO := true
+#COMMON_GLOBAL_CFLAGS += -DSTE_FM
 
 # Webkit
 ENABLE_WEBGL := true
