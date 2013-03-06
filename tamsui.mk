@@ -142,9 +142,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=131072 \
     com.qc.hardware=true \
     debug.sf.hw=1 \
-    debug.enabletr=false \
     debug.composition.type=mdp
-#    persist.sys.use_dithering=1
 
 ## Reference values from CAF
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -159,6 +157,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=30
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    hw.fm.isAnalog=true
+
+PRODUCT_PROPERTY_OVERRIDES += \
+    sys.mem.max_hidden_apps=3
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
