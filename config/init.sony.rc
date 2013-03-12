@@ -149,7 +149,8 @@ on post-fs
     # create symlink for fb1 as HDMI
     symlink /dev/graphics/fb1 /dev/graphics/hdmi
 
-    # Remove write permissions to video related nodes
+    # setup permissions for fb1 related nodes
+    chown system graphics /sys/class/graphics/fb1/hpd
     chmod 0664 /sys/devices/virtual/graphics/fb1/hpd
     chmod 0664 /sys/devices/virtual/graphics/fb1/video_mode
     chmod 0664 /sys/devices/virtual/graphics/fb1/format_3d
@@ -188,12 +189,18 @@ on post-fs
     #Permission for Lights
     chown system system /sys/class/led/fih_led/control
     chown system system /sys/devices/virtual/graphics/fb0/msmfb_bl0/brightness
+    chown system system /sys/class/graphics/fb0/dim
 
     #vibrator
     chown system system /sys/class/vibrator/pmic-vib/control
 
     #buffer fix
     write /sys/module/msm_fb/parameters/align_buffer 1
+
+# Stamina Mode
+    chown system system /sys/devices/platform/sony_ssm/enable
+    chown system system /sys/devices/platform/sony_ssm/set_late_resume_notifications
+    chown system system /sys/devices/platform/sony_ssm/set_request_next_suspend_prepare_notification
 
 on post-fs-data
     mkdir /data/misc/bluetooth 0770 bluetooth bluetooth

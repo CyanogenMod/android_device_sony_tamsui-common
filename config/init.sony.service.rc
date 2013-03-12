@@ -1,3 +1,7 @@
+on boot
+   start qcamerasvr
+   start gpu_dcvsd
+
 service rmt_storage /system/bin/rmt_storage
     class emmc
     user root
@@ -11,4 +15,15 @@ service btld /system/bin/btld -lpm 1
     user root
     group bluetooth net_bt_admin
     disabled
+    oneshot
+
+#start camera server as daemon
+service qcamerasvr /system/bin/mm-qcamera-daemon
+        class late_start
+        user camera
+        group camera system inet audio
+
+service gpu_dcvsd /system/bin/gpu_dcvsd
+    class late_start
+    user root
     oneshot
