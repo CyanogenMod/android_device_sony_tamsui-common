@@ -171,3 +171,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
+
+$(call inherit-product, vendor/sony/qcom-common/common-vendor.mk)
+
+$(call inherit-product, vendor/sony/tamsui-common/common-vendor.mk)
