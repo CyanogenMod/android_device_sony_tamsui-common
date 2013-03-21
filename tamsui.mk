@@ -167,7 +167,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     hw.fm.isAnalog=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    sys.mem.max_hidden_apps=3
+    sys.mem.max_hidden_apps=10
 
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp
