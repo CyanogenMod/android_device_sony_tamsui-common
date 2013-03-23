@@ -27,6 +27,10 @@ PRODUCT_COPY_FILES += \
 PRODUCT_COPY_FILES += \
     device/sony/tamsui-common/config/init.qcom.efs.sync.sh:system/etc/init.qcom.efs.sync.sh
 
+# thermald config
+PRODUCT_COPY_FILES += \
+    device/sony/tamsui-common/config/thermald.conf:system/etc/thermald.conf
+
 # QCOM Display
 PRODUCT_PACKAGES += \
     copybit.msm7x27a \
