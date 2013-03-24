@@ -190,6 +190,7 @@ on post-fs
     chown system system /sys/class/led/fih_led/control
     chown system system /sys/devices/virtual/graphics/fb0/msmfb_bl0/brightness
     chown system system /sys/class/graphics/fb0/dim
+    chown system system /sys/class/leds/sns/rgb_brightness
 
     #vibrator
     chown system system /sys/class/vibrator/pmic-vib/control
