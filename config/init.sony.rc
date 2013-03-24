@@ -1,6 +1,5 @@
 import init.device.rc
 import init.sony.usb.rc
-import init.sony.service.rc
 
 on early-init
     mkdir /storage 0050 system sdcard_r
@@ -138,6 +137,8 @@ on post-fs
     mkdir /dev/socket/qmux_gps 0770 gps gps
     chmod 2770 /dev/socket/qmux_gps
 
+    # Allow QMUX daemon to assign port open wait time
+    chown radio radio /sys/devices/virtual/hsicctl/hsicctl0/modem_wait
     #Set SUID bit for usbhub
     chmod 4755 /system/bin/usbhub
     chmod 755 /system/bin/usbhub_init
@@ -184,6 +185,10 @@ on post-fs
     write /proc/sys/net/ipv6/conf/rmnet_sdio5/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio6/accept_ra 2
     write /proc/sys/net/ipv6/conf/rmnet_sdio7/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb0/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb1/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb2/accept_ra 2
+    write /proc/sys/net/ipv6/conf/rmnet_usb3/accept_ra 2
 
     mount debugfs debugfs /sys/kernel/debug
 
@@ -281,6 +286,9 @@ on post-fs-data
     write /sys/devices/system/cpu/cpufreq/ondemand/sampling_down_factor 4
     write /sys/devices/system/cpu/cpufreq/ondemand/down_differential 10
 
+   start qcamerasvr
+   start gpu_dcvsd
+
 service setmsflagbc /system/bin/startupflag bootstarted
     user root
     oneshot
@@ -299,6 +307,20 @@ on property:dev.bootcomplete=1
 service updatemiscta /system/bin/updatemiscta
     class emmc
     user root
+    oneshot
+
+service bt-dun /system/bin/dun-server /dev/smd7 /dev/rfcomm0
+    class late_start
+    user bluetooth
+    group bluetooth net_bt_admin inet
+    disabled
+    oneshot
+
+service bt-sap /system/bin/sapd 15
+    user bluetooth
+    group bluetooth net_bt_admin
+    class late_start
+    disabled
     oneshot
 
 # SEMC, TA rmt service
@@ -372,3 +394,28 @@ service wiperiface /system/bin/wiperiface
     group qcom_oncrpc net_raw
     oneshot
 
+service rmt_storage /system/bin/rmt_storage
+    class emmc
+    user root
+
+# Accelerometer
+service akmd /system/bin/akmd8975
+    class main
+    user root
+
+service btld /system/bin/btld -lpm 1
+    user root
+    group bluetooth net_bt_admin
+    disabled
+    oneshot
+
+#start camera server as daemon
+service qcamerasvr /system/bin/mm-qcamera-daemon
+        class late_start
+        user camera
+        group camera system inet audio
+
+service gpu_dcvsd /system/bin/gpu_dcvsd
+    class late_start
+    user root
+    oneshot
