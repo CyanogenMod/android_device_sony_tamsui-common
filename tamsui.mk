@@ -105,8 +105,12 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 
-# Custom init / uevent
+# Ramdisk
 PRODUCT_COPY_FILES += \
+    device/sony/tamsui-common/prebuilt/rmt_storage:root/sbin/rmt_storage \
+    device/sony/tamsui-common/prebuilt/ta_rmt_service:root/sbin/ta_rmt_service \
+    device/sony/tamsui-common/prebuilt/tad:root/sbin/tad \
+    device/sony/tamsui-common/prebuilt/wait4tad:root/sbin/wait4tad \
     device/sony/tamsui-common/config/init.sony.rc:root/init.sony.rc \
     device/sony/tamsui-common/config/ueventd.sony.rc:root/ueventd.sony.rc
 

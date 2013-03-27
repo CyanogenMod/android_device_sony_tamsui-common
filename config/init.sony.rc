@@ -22,7 +22,7 @@ on emmc-fs
 
     # SEMC, TA Daemon
     class_start trimarea
-    exec /system/bin/wait4tad
+    exec /sbin/wait4tad
     start rmt_storage
     class_start emmc
     write /sys/devices/virtual/bdi/179:32/read_ahead_kb 512
@@ -222,7 +222,7 @@ service bt-sap /system/bin/sapd 15
     oneshot
 
 # SEMC, TA rmt service
-service ta_rmt_service /system/bin/ta_rmt_service
+service ta_rmt_service /sbin/ta_rmt_service
     class emmc
     user root
 
@@ -239,7 +239,7 @@ service netmgrd /system/bin/netmgrd
     class late_start
 
 # SEMC, TA Daemon
-service tad /system/bin/tad /dev/block/mmcblk0 8,16,256
+service tad /sbin/tad /dev/block/mmcblk0 8,16,256
     class trimarea
     user root
     group root
@@ -257,7 +257,7 @@ service nvcustomizer /system/bin/nvcustomizer
     disabled
     oneshot
 
-service rmt_storage /system/bin/rmt_storage
+service rmt_storage /sbin/rmt_storage
     class core
     user root
     disabled
