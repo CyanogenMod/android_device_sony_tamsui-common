@@ -330,17 +330,6 @@ service wiperiface /system/bin/wiperiface
     group qcom_oncrpc net_raw
     oneshot
 
-# Accelerometer
-service akmd /system/bin/akmd8975
-    class main
-    user root
-
-service btld /system/bin/btld -lpm 1
-    user root
-    group bluetooth net_bt_admin
-    disabled
-    oneshot
-
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
         class late_start
