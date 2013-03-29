@@ -129,7 +129,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.telephony.ril_class=SonyQualcommRIL7x27a \
-    ro.telephony.ril.v3=skipnullaid \
     rild.libpath=/system/lib/libril-qc-1.so \
     rild.libargs=-d/dev/smd0 \
     persist.rild.nitz_plmn= \
