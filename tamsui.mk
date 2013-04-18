@@ -29,6 +29,7 @@ PRODUCT_COPY_FILES += \
 
 # thermald config
 PRODUCT_COPY_FILES += \
+    device/sony/tamsui-common/config/audio_policy.conf:system/etc/audio_policy.conf \
     device/sony/tamsui-common/config/thermald.conf:system/etc/thermald.conf
 
 # QCOM Display
