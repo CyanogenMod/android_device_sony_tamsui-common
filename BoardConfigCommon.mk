@@ -45,6 +45,7 @@ TARGET_PROVIDES_LIBLIGHTS := true
 
 # Workaround for missing symbols in camera
 COMMON_GLOBAL_CFLAGS += -DQCOM_NO_SECURE_PLAYBACK
+BOARD_NEEDS_MEMORYHEAPPMEM := true
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
