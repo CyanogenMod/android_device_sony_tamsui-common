@@ -113,7 +113,11 @@ static int set_light_backlight (struct light_device_t *dev, struct light_state_t
 	ALOGV("%s brightness=%d", __func__, brightness);
 	pthread_mutex_lock(&g_lock);
 	g_backlight = brightness;
+#ifndef STANDARD_LIGHTS
+	err = write_int (LCD_BACKLIGHT_FILE, (brightness / 2));
+#else
 	err = write_int (LCD_BACKLIGHT_FILE, brightness);
+#endif
 	pthread_mutex_unlock(&g_lock);
 
 	return err;
