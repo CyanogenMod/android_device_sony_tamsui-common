@@ -29,7 +29,6 @@ PRODUCT_COPY_FILES += \
 
 # thermald config
 PRODUCT_COPY_FILES += \
-    device/sony/tamsui-common/config/audio_policy.conf:system/etc/audio_policy.conf \
     device/sony/tamsui-common/config/thermald.conf:system/etc/thermald.conf
 
 # QCOM Display
@@ -48,12 +47,12 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.a2dp.default \
-    audio_policy.msm7x27a \
-    audio.primary.msm7x27a \
-    audio_policy.conf \
+    audio_policy.sony \
+    audio.primary.sony \
     libaudioutils
 
 PRODUCT_COPY_FILES += \
+    device/sony/tamsui-common/config/audio_policy.conf:system/etc/audio_policy.conf \
     device/sony/tamsui-common/config/media_profiles.xml:system/etc/media_profiles.xml \
     device/sony/tamsui-common/config/media_codecs.xml:system/etc/media_codecs.xml \
     device/sony/tamsui-common/config/AudioFilter.csv:system/etc/AudioFilter.csv
