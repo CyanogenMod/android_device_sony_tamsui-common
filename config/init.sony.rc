@@ -225,14 +225,13 @@ on post-fs-data
     write /sys/module/lowmemorykiller/parameters/adj 0,1,2,4,9,12
     write /proc/sys/vm/min_free_kbytes 8192
 
-   start qcamerasvr
-   start gpu_dcvsd
+    start qcamerasvr
+    start gpu_dcvsd
 
 service updatemiscta /system/bin/updatemiscta
     class emmc
     user root
     oneshot
-
 
 # SEMC, TA rmt service
 service ta_rmt_service /sbin/ta_rmt_service
@@ -338,9 +337,9 @@ service iprenew_p2p /system/bin/dhcpcd -n p2p
     oneshot
 
 service iprelease_wlan0 /system/bin/dhcpcd -k wlan0
-   class late_start
-   disabled
-   oneshot
+    class late_start
+    disabled
+    oneshot
 
 service dhcpcd_bnep0 /system/bin/dhcpcd -BKLG
     disabled
@@ -351,16 +350,15 @@ service wiperiface /system/bin/wiperiface
     group qcom_oncrpc net_raw
     oneshot
 
-
 on property:ro.data.large_tcp_window_size=true
     # Adjust socket buffer to enlarge TCP receive window for high bandwidth (e.g. DO-RevB)
     write /proc/sys/net/ipv4/tcp_adv_win_scale  1
 
 #start camera server as daemon
 service qcamerasvr /system/bin/mm-qcamera-daemon
-        class late_start
-        user camera
-        group camera system inet audio
+    class late_start
+    user camera
+    group camera system inet audio
 
 service gpu_dcvsd /system/bin/gpu_dcvsd
     class late_start
